@@ -7,6 +7,7 @@ public class Jim : MonoBehaviour {
 	private List<string> m_Dialouge = new List<string>();
 	public int m_Index;
 	public MessageHandler m_MessageHandler;
+	public QuestHandler m_QuestHandler;
 	public float m_InteractDistance;
 
 	private void Awake() {
@@ -16,7 +17,7 @@ public class Jim : MonoBehaviour {
 	}
 
 	public void JimDialogue(){
-		m_MessageHandler.ShowMessage(gameObject.transform, "Jim", m_Dialouge[m_Index]);
+		m_MessageHandler.ShowMessage(transform, "Jim", m_Dialouge[m_Index]);
 		if(m_Index < m_Dialouge.Count)
 			m_Index++;
 		else
@@ -24,6 +25,16 @@ public class Jim : MonoBehaviour {
 	}
 
 	public bool HasQuestItem(){
-		return true;
+		if(m_QuestHandler.m_QuestItem == "Brown Mushrooms")
+		{
+			m_MessageHandler.ShowMessage(transform, "Jim", "Thanks for bringing me these brown mushrooms!");
+			m_QuestHandler.ResetQuestItem();
+			return true;
+		}else if(m_QuestHandler.m_QuestItem == "Canoe Paddle"){
+			m_MessageHandler.ShowMessage(transform, "Jim", "It was on top of the tree?!?! Thanks for getting it for me.");
+			m_QuestHandler.ResetQuestItem();
+			return true;
+		}
+		return false;
 	}
 }
