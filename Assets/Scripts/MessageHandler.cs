@@ -24,7 +24,7 @@ public class MessageHandler : MonoBehaviour {
 		if(m_Target != null){
 			Vector3 ScreenPos = m_MainCamera.WorldToScreenPoint(m_Target.position);
 			m_MessageText.rectTransform.position = new Vector2(ScreenPos.x, ScreenPos.y);
-			m_MessageBackground.rectTransform.position = m_MessageText.rectTransform.position + new Vector3(0, m_TargetText.rectTransform.sizeDelta.y, 0);
+			m_MessageBackground.rectTransform.position = m_MessageText.rectTransform.position + new Vector3(0, m_TargetText.rectTransform.sizeDelta.y /2, 0);
 			m_MessageBackground.rectTransform.sizeDelta = m_MessageText.rectTransform.sizeDelta + new Vector2(0, m_TargetText.rectTransform.sizeDelta.y);
 		} 
 	}
@@ -44,7 +44,7 @@ public class MessageHandler : MonoBehaviour {
 		m_MessageBackground.rectTransform.sizeDelta = Vector2.zero;
 		m_MessageText.rectTransform.sizeDelta = new Vector2(400,0);
 		m_MessageText.text = null;
-		m_TargetText.text = null;
+		m_TargetText.text = null;	
 	}
 
 	public IEnumerator AnimateMessage(string Message){
